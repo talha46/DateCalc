@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Mulish } from "next/font/google";
-import Script from "next/script";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import "./globals.css";
 
@@ -39,12 +38,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={mulish.className}>
       <body className="min-h-screen bg-white text-gray-900">
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2122654552018310"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
         <header className="border-b border-gray-200">
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">
             <Link href="/" className="text-xl font-bold text-teal-700">
