@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Inter } from "next/font/google";
+import { Mulish } from "next/font/google";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import "./globals.css";
 
-const inter = Inter({
+const mulish = Mulish({
   subsets: ["latin"],
+  weight: ["300"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +36,7 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={mulish.className}>
       <body className="min-h-screen bg-white text-gray-900">
         <header className="border-b border-gray-200">
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">

@@ -10,7 +10,7 @@ type ResultCardProps = {
 
 export default function ResultCard({ label, value, copyText }: ResultCardProps) {
   return (
-    <article className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+    <article className="min-h-[128px] rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
       <div className="mb-2 flex items-start justify-between gap-2">
         <p className="text-sm text-gray-600">{label}</p>
         <CopyButton value={copyText} />
