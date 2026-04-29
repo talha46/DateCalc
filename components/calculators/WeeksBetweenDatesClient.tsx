@@ -6,9 +6,11 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
+import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
 import { calculateWeeksBreakdown, toDate } from "@/lib/dateUtils";
+import { getToolLinks } from "@/lib/toolLinks";
 
 export default function WeeksBetweenDatesClient() {
   const searchParams = useSearchParams();
@@ -38,6 +40,12 @@ export default function WeeksBetweenDatesClient() {
     ? `Between ${startDate} and ${endDate} there are ${result.fullWeeks} full weeks and ${result.remainingDays} remaining days.`
     : "";
 
+  const relatedTools = getToolLinks([
+    "date-difference-calculator",
+    "business-days-calculator",
+    "add-days-to-date",
+  ]);
+
   return (
     <CalculatorLayout>
       <Breadcrumbs items={[{ label: "Weeks Between Dates", href: "/weeks-between-dates" }]} />
@@ -65,6 +73,7 @@ export default function WeeksBetweenDatesClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Provide both dates to calculate weeks.</p>
       )}
+      <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );
 }

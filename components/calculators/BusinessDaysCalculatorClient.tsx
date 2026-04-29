@@ -6,9 +6,11 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
+import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
 import { calculateBusinessDays, toDate } from "@/lib/dateUtils";
+import { getToolLinks } from "@/lib/toolLinks";
 
 export default function BusinessDaysCalculatorClient() {
   const searchParams = useSearchParams();
@@ -40,6 +42,12 @@ export default function BusinessDaysCalculatorClient() {
     const holidayDates = holidays.map((holiday) => toDate(holiday)).filter((date): date is Date => Boolean(date));
     return calculateBusinessDays(start, end, holidayDates);
   }, [endDate, holidays, startDate]);
+
+  const relatedTools = getToolLinks([
+    "date-difference-calculator",
+    "weeks-between-dates",
+    "add-days-to-date",
+  ]);
 
   return (
     <CalculatorLayout>
@@ -100,6 +108,7 @@ export default function BusinessDaysCalculatorClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Enter start and end dates to calculate.</p>
       )}
+      <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );
 }

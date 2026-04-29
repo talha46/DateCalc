@@ -6,9 +6,11 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
+import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
 import { calculateBusinessDays, calculateDateDifference, toDate } from "@/lib/dateUtils";
+import { getToolLinks } from "@/lib/toolLinks";
 
 export default function DateDifferenceCalculatorClient() {
   const searchParams = useSearchParams();
@@ -42,6 +44,12 @@ export default function DateDifferenceCalculatorClient() {
   const summary = result
     ? `Between ${startDate} and ${endDate}, there are ${result.totalDays} total days, ${result.weeks} weeks, ${result.months} months, and ${result.years} years.`
     : "";
+
+  const relatedTools = getToolLinks([
+    "weeks-between-dates",
+    "business-days-calculator",
+    "add-days-to-date",
+  ]);
 
   return (
     <CalculatorLayout>
@@ -85,6 +93,7 @@ export default function DateDifferenceCalculatorClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Add both dates to calculate.</p>
       )}
+      <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );
 }

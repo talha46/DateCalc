@@ -6,9 +6,11 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
+import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
 import { formatDateLong, lifePathNumber, secondsOld, toDate, weekday, zodiacSign } from "@/lib/dateUtils";
+import { getToolLinks } from "@/lib/toolLinks";
 
 function nextBirthdayDate(dob: Date, now: Date) {
   const currentYearBirthday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
@@ -53,6 +55,12 @@ export default function BirthdayCalculatorClient() {
     ? `You were born on ${result.weekday}, your zodiac sign is ${result.zodiac}, and your life path number is ${result.lifePath}.`
     : "";
 
+  const relatedTools = getToolLinks([
+    "age-calculator",
+    "days-until",
+    "weeks-between-dates",
+  ]);
+
   return (
     <CalculatorLayout>
       <Breadcrumbs items={[{ label: "Birthday Calculator", href: "/birthday-calculator" }]} />
@@ -80,6 +88,7 @@ export default function BirthdayCalculatorClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Select your birth date to view details.</p>
       )}
+      <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );
 }

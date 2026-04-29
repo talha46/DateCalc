@@ -6,9 +6,11 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
+import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
 import { formatDateLong, getResultDate, weekday, toDate } from "@/lib/dateUtils";
+import { getToolLinks } from "@/lib/toolLinks";
 
 type Unit = "days" | "weeks" | "months" | "years";
 
@@ -40,6 +42,12 @@ export default function AddDaysToDateClient() {
       sentence: `Starting from ${startDate}, adding ${parsedAmount} ${unit} gives ${formatDateLong(date)}.`,
     };
   }, [amount, startDate, unit]);
+
+  const relatedTools = getToolLinks([
+    "date-difference-calculator",
+    "days-until",
+    "leap-year-calculator",
+  ]);
 
   return (
     <CalculatorLayout>
@@ -87,6 +95,7 @@ export default function AddDaysToDateClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Provide a date and amount to calculate.</p>
       )}
+      <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );
 }

@@ -7,9 +7,11 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
+import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
 import { toDate } from "@/lib/dateUtils";
+import { getToolLinks } from "@/lib/toolLinks";
 
 type QuickDate = { label: string; date: string };
 
@@ -59,6 +61,12 @@ export default function DaysUntilClient() {
     const secs = seconds % 60;
     return { days, hours, minutes, secs };
   }, [now, targetDate]);
+
+  const relatedTools = getToolLinks([
+    "birthday-calculator",
+    "add-days-to-date",
+    "date-difference-calculator",
+  ]);
 
   return (
     <CalculatorLayout>
@@ -114,6 +122,7 @@ export default function DaysUntilClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Set a target date to start countdown.</p>
       )}
+      <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );
 }

@@ -5,9 +5,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorLayout from "@/components/CalculatorLayout";
+import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
 import { leapYearDetails } from "@/lib/dateUtils";
+import { getToolLinks } from "@/lib/toolLinks";
 
 export default function LeapYearCalculatorClient() {
   const searchParams = useSearchParams();
@@ -26,6 +28,12 @@ export default function LeapYearCalculatorClient() {
     if (Number.isNaN(parsed) || parsed < 1) return null;
     return leapYearDetails(parsed);
   }, [year]);
+
+  const relatedTools = getToolLinks([
+    "add-days-to-date",
+    "date-difference-calculator",
+    "birthday-calculator",
+  ]);
 
   return (
     <CalculatorLayout>
@@ -77,6 +85,7 @@ export default function LeapYearCalculatorClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Enter a valid year.</p>
       )}
+      <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );
 }

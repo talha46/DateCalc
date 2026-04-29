@@ -5,9 +5,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
+import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
 import { calculateAge, toDate } from "@/lib/dateUtils";
+import { getToolLinks } from "@/lib/toolLinks";
 
 function todayISO() {
   return new Date().toISOString().split("T")[0];
@@ -36,6 +38,16 @@ export default function AgeCalculatorClient() {
     if (!dobDate) return null;
     return calculateAge(dobDate, asOfDate);
   }, [asOf, dob]);
+
+  const moreTools = getToolLinks([
+    "date-difference-calculator",
+    "days-until",
+    "birthday-calculator",
+    "weeks-between-dates",
+    "business-days-calculator",
+    "add-days-to-date",
+    "leap-year-calculator",
+  ]);
 
   return (
     <CalculatorLayout>
@@ -78,6 +90,8 @@ export default function AgeCalculatorClient() {
           Add a valid date of birth to view results.
         </p>
       )}
+
+      <InternalToolsSection title="More Free Date Tools" tools={moreTools} />
     </CalculatorLayout>
   );
 }
