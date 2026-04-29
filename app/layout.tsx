@@ -53,7 +53,7 @@ export default function RootLayout({
           </div>
         </header>
         <main>{children}</main>
-        <div className="mx-auto w-full max-w-6xl px-4 pb-6">
+        <div className="mx-auto w-full max-w-6xl px-4">
           <AdSenseUnit id="adsense-above-footer" />
         </div>
         <footer className="border-t border-gray-200">
