@@ -13,10 +13,10 @@ const mulish = Mulish({
 export const metadata: Metadata = {
   metadataBase: new URL("https://datecalc.xyz"),
   title: {
-    default: "DateCalc.tools - Date & Age Calculators",
-    template: "%s | DateCalc.tools",
+    default: "DateCalc - Date & Age Calculators",
+    template: "%s | DateCalc",
   },
-  description: "DateCalc.tools offers fast, free, and accurate date and age calculators for daily planning.",
+  description: "DateCalc offers fast, free, and accurate date and age calculators for daily planning.",
 };
 
 export default function RootLayout({
@@ -41,7 +41,7 @@ export default function RootLayout({
         <header className="border-b border-gray-200">
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">
             <Link href="/" className="text-xl font-bold text-teal-700">
-              DateCalc.tools
+              DateCalc
             </Link>
             <nav className="flex flex-wrap gap-3 text-sm">
               {navLinks.map((item) => (
@@ -58,7 +58,7 @@ export default function RootLayout({
         </div>
         <footer className="border-t border-gray-200">
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between">
-            <p>© {new Date().getFullYear()} DateCalc.tools. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} DateCalc. All rights reserved.</p>
             <div className="flex flex-wrap gap-4">
               <Link href="/about" className="hover:text-teal-700">
                 About
