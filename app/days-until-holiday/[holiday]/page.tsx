@@ -5,7 +5,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import FaqJsonLd from "@/components/FaqJsonLd";
-import HolidayCountdown from "@/app/days-until-[holiday]/HolidayCountdown";
+import HolidayCountdown from "@/components/programmatic/HolidayCountdown";
 import { getUpcomingHolidayDate, holidayConfigBySlug, holidaySlugs, type HolidaySlug } from "@/lib/programmaticPages";
 
 type PageProps = {
