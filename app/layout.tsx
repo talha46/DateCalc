@@ -11,7 +11,7 @@ const mulish = Mulish({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://datecalc.xyz"),
+  metadataBase: new URL('https://datecalc.xyz'),
   title: {
     default: "DateCalc - Date & Age Calculators",
     template: "%s | DateCalc",
