@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { daysFromTodayStaticValues, holidaySlugs } from "@/lib/programmaticPages";
+import { daysFromTodayRoutes, holidayRoutes } from "@/lib/programmaticPages";
 
 const base = "https://datecalc.xyz";
 const baseRoutes = [
@@ -16,10 +16,7 @@ const baseRoutes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const programmaticRoutes = [
-    ...daysFromTodayStaticValues.map((days) => `/${days}-days-from-today`),
-    ...holidaySlugs.map((holiday) => `/days-until-${holiday}`),
-  ];
+  const programmaticRoutes = [...daysFromTodayRoutes, ...holidayRoutes];
   const routes = [...baseRoutes, ...programmaticRoutes];
   return routes.map((route) => ({
     url: `${base}${route}`,

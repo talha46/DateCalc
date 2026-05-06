@@ -1,4 +1,5 @@
 export const daysFromTodayStaticValues = [7, 10, 14, 15, 20, 21, 25, 30, 45, 60, 90, 100, 120, 180, 365] as const;
+export const daysFromTodayRoutes = daysFromTodayStaticValues.map((days) => `/${days}-days-from-today`);
 
 export const holidaySlugs = [
   "new-year",
@@ -9,6 +10,7 @@ export const holidaySlugs = [
   "thanksgiving",
   "valentines-day",
 ] as const;
+export const holidayRoutes = holidaySlugs.map((holiday) => `/days-until-${holiday}`);
 
 export type HolidaySlug = (typeof holidaySlugs)[number];
 

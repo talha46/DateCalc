@@ -3,12 +3,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { differenceInSeconds } from "date-fns";
 
-type HolidayCountdownProps = {
+type HolidayCountdownTimerProps = {
   holidayName: string;
   targetDateIso: string;
 };
 
-export default function HolidayCountdown({ holidayName, targetDateIso }: HolidayCountdownProps) {
+export default function HolidayCountdownTimer({ holidayName, targetDateIso }: HolidayCountdownTimerProps) {
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
