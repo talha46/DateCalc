@@ -5,11 +5,13 @@ import { differenceInSeconds } from "date-fns";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CalculatorEducationalContent from "@/components/CalculatorEducationalContent";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
 import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
+import { daysUntilEducational } from "@/lib/educationalCopy/coreCalculators";
 import { toDate } from "@/lib/dateUtils";
 import { getToolLinks } from "@/lib/toolLinks";
 
@@ -122,6 +124,9 @@ export default function DaysUntilClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Set a target date to start countdown.</p>
       )}
+
+      <CalculatorEducationalContent {...daysUntilEducational} />
+
       <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );

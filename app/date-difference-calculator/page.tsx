@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import DateDifferenceCalculatorClient from "@/components/calculators/DateDifferenceCalculatorClient";
 import FaqJsonLd from "@/components/FaqJsonLd";
+import { dateDifferenceEducational } from "@/lib/educationalCopy/coreCalculators";
 
 export const metadata: Metadata = {
   title: "Date Difference Calculator",
@@ -10,24 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function DateDifferenceCalculatorPage() {
-  const faq = [
-    {
-      question: "How is date difference calculated?",
-      answer: "The tool compares start and end dates and returns elapsed days, weeks, months, and years.",
-    },
-    {
-      question: "Can I include the end date?",
-      answer: "Yes. Enable the include end date toggle to count the final day as part of the range.",
-    },
-    {
-      question: "Can I count only weekdays?",
-      answer: "Yes. Turn on business days mode to exclude weekends.",
-    },
-  ];
-
   return (
     <>
-      <FaqJsonLd items={faq} />
+      <FaqJsonLd items={[...dateDifferenceEducational.faqItems]} />
       <Suspense fallback={null}>
         <DateDifferenceCalculatorClient />
       </Suspense>

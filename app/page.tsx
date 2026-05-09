@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import AgeCalculatorClient from "@/components/calculators/AgeCalculatorClient";
 import FaqJsonLd from "@/components/FaqJsonLd";
+import { ageCalculatorEducational } from "@/lib/educationalCopy/coreCalculators";
 
 export const metadata: Metadata = {
   title: "Age Calculator",
@@ -11,24 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const faq = [
-    {
-      question: "How does this age calculator work?",
-      answer: "It uses your birth date and an optional as-of date to calculate exact elapsed time.",
-    },
-    {
-      question: "Can I calculate age for a past date?",
-      answer: "Yes. Set the optional as-of date and results will update automatically.",
-    },
-    {
-      question: "Is timezone considered?",
-      answer: "Yes. Calculations run in your local timezone automatically.",
-    },
-  ];
-
   return (
     <>
-      <FaqJsonLd items={faq} />
+      <FaqJsonLd items={[...ageCalculatorEducational.faqItems]} />
       <Suspense fallback={null}>
         <AgeCalculatorClient />
       </Suspense>

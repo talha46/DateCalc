@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import WeeksBetweenDatesClient from "@/components/calculators/WeeksBetweenDatesClient";
+import { weeksBetweenDatesEducational } from "@/lib/educationalCopy/coreCalculators";
 
 export const metadata: Metadata = {
   title: "Weeks Between Dates Calculator",
@@ -10,24 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function WeeksBetweenDatesPage() {
-  const faq = [
-    {
-      question: "What does full weeks mean?",
-      answer: "Full weeks are complete 7-day blocks in the selected date range.",
-    },
-    {
-      question: "Does this help with pregnancy tracking?",
-      answer: "Yes. It provides full weeks plus extra days for easy tracking.",
-    },
-    {
-      question: "Can I share the selected range?",
-      answer: "Yes. The page URL updates live with your input values.",
-    },
-  ];
-
   return (
     <>
-      <FaqJsonLd items={faq} />
+      <FaqJsonLd items={[...weeksBetweenDatesEducational.faqItems]} />
       <Suspense fallback={null}>
         <WeeksBetweenDatesClient />
       </Suspense>

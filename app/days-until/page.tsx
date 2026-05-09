@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import DaysUntilClient from "@/components/calculators/DaysUntilClient";
 import FaqJsonLd from "@/components/FaqJsonLd";
+import { daysUntilEducational } from "@/lib/educationalCopy/coreCalculators";
 
 export const metadata: Metadata = {
   title: "Days Until Calculator",
@@ -10,24 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function DaysUntilPage() {
-  const faq = [
-    {
-      question: "Does the countdown update live?",
-      answer: "Yes. The clock updates every second.",
-    },
-    {
-      question: "Can I use predefined holidays?",
-      answer: "Yes. Use quick buttons for Christmas, New Year, Eid, and Diwali.",
-    },
-    {
-      question: "Are Eid dates exact?",
-      answer: "No. Eid dates are approximate and may vary by local moon sighting.",
-    },
-  ];
-
   return (
     <>
-      <FaqJsonLd items={faq} />
+      <FaqJsonLd items={[...daysUntilEducational.faqItems]} />
       <Suspense fallback={null}>
         <DaysUntilClient />
       </Suspense>

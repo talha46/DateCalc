@@ -2,12 +2,16 @@ import Link from "next/link";
 import { differenceInCalendarDays, format } from "date-fns";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CalculatorEducationalContent from "@/components/CalculatorEducationalContent";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import HolidayCountdownTimer from "@/components/HolidayCountdownTimer";
+import type { FaqItem } from "@/components/FaqSection";
+import { getHolidayEducationalBase } from "@/lib/educationalCopy/holidays";
+import type { HolidaySlug } from "@/lib/programmaticPages";
 
 type HolidayCountdownProps = {
-  slug: string;
+  slug: HolidaySlug;
   holidayName: string;
   targetDate: Date;
   isApproximate?: boolean;
@@ -17,19 +21,21 @@ export default function HolidayCountdown({ slug, holidayName, targetDate, isAppr
   const now = new Date();
   const daysLeft = Math.max(0, differenceInCalendarDays(targetDate, now));
   const formattedDate = format(targetDate, "EEEE, MMMM d, yyyy");
+  const educational = getHolidayEducationalBase(slug);
 
   const faq = [
     {
       question: `How many days until ${holidayName}?`,
-      answer: `There are ${daysLeft} days until ${holidayName}.`,
+      answer: `There are ${daysLeft} calendar days until ${holidayName} on ${formattedDate} (local date display). Use the live timer for second-level pacing when coordinating venue doors, broadcast cues, or volunteer shifts; remember moon-sighted holidays may shift by a day versus printed estimates.`,
     },
     {
-      question: `What date is ${holidayName}?`,
-      answer: `${holidayName} is on ${formattedDate}.`,
+      question: `What date is ${holidayName} this cycle?`,
+      answer: `${holidayName} falls on ${formattedDate} for the upcoming occurrence highlighted above. Multicultural households should confirm congregational announcements when communities observe distinct calendars or moon committees.`,
     },
     {
       question: `Does this ${holidayName} countdown update live?`,
-      answer: "Yes. The countdown updates every second.",
+      answer:
+        "Yes. The timer subtracts your current local clock from the target instant each second, so leaving the tab open keeps parity with midnight crossings and travel-day adjustments without manual refresh.",
     },
   ];
 
@@ -53,6 +59,13 @@ export default function HolidayCountdown({ slug, holidayName, targetDate, isAppr
       <div className="mt-8">
         <AdSenseUnit id="adsense-below-result" />
       </div>
+
+      <CalculatorEducationalContent
+        howToIntro={educational.howToIntro}
+        steps={educational.steps}
+        aboutParagraphs={educational.aboutParagraphs}
+        faqItems={faq as [FaqItem, FaqItem, FaqItem]}
+      />
 
       <section className="mt-8 rounded-xl border border-gray-200 p-4">
         <h2 className="text-xl font-semibold text-teal-700">Related Date Tools</h2>

@@ -4,11 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CalculatorEducationalContent from "@/components/CalculatorEducationalContent";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
 import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
+import { weeksBetweenDatesEducational } from "@/lib/educationalCopy/coreCalculators";
 import { calculateWeeksBreakdown, toDate } from "@/lib/dateUtils";
 import { getToolLinks } from "@/lib/toolLinks";
 
@@ -73,6 +75,9 @@ export default function WeeksBetweenDatesClient() {
       ) : (
         <p className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700">Provide both dates to calculate weeks.</p>
       )}
+
+      <CalculatorEducationalContent {...weeksBetweenDatesEducational} />
+
       <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
     </CalculatorLayout>
   );

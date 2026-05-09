@@ -3,11 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import CalculatorEducationalContent from "@/components/CalculatorEducationalContent";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
 import InternalToolsSection from "@/components/InternalToolsSection";
 import ResultCard from "@/components/ResultCard";
 import ShareButton from "@/components/ShareButton";
+import { ageCalculatorEducational } from "@/lib/educationalCopy/coreCalculators";
 import { calculateAge, toDate } from "@/lib/dateUtils";
 import { getToolLinks } from "@/lib/toolLinks";
 
@@ -90,6 +92,8 @@ export default function AgeCalculatorClient() {
           Add a valid date of birth to view results.
         </p>
       )}
+
+      <CalculatorEducationalContent {...ageCalculatorEducational} />
 
       <InternalToolsSection title="More Free Date Tools" tools={moreTools} />
     </CalculatorLayout>
