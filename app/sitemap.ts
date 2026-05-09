@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { daysFromTodayRoutes, holidayRoutes } from "@/lib/programmaticPages";
 
-const base = "https://datecalc.xyz";
+const baseUrl = 'https://datecalc.xyz';
 const baseRoutes = [
   "",
   "/date-difference-calculator",
@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const programmaticRoutes = [...daysFromTodayRoutes, ...holidayRoutes];
   const routes = [...baseRoutes, ...programmaticRoutes];
   return routes.map((route) => ({
-    url: `${base}${route}`,
+    url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: route === "" ? 1 : 0.8,
