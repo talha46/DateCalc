@@ -33,6 +33,7 @@ export default function RootLayout({
     { href: "/business-days-calculator", label: "Business Days" },
     { href: "/add-days-to-date", label: "Add Days to Date" },
     { href: "/leap-year-calculator", label: "Leap Year" },
+    { href: "/blog", label: "Blog" },
   ];
 
   return (
@@ -60,6 +61,9 @@ export default function RootLayout({
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-gray-600 lg:flex-row lg:items-center lg:justify-between">
             <p>© {new Date().getFullYear()} DateCalc. All rights reserved.</p>
             <div className="flex flex-wrap gap-4">
+              <Link href="/blog" className="hover:text-teal-700">
+                Blog
+              </Link>
               <Link href="/about" className="hover:text-teal-700">
                 About
               </Link>

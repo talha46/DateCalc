@@ -2,261 +2,370 @@ import type { CalculatorEducationalContentProps } from "@/components/CalculatorE
 
 type EducationalBundle = Pick<
   CalculatorEducationalContentProps,
-  "howToIntro" | "steps" | "aboutParagraphs" | "faqItems"
+  "howToIntro" | "steps" | "aboutParagraphs" | "extraSections" | "faqItems"
 >;
 
 export const ageCalculatorEducational: EducationalBundle = {
   howToIntro:
-    "This age calculator turns two calendar dates into a precise elapsed-time breakdown so you can report age beyond whole years. Pick your birth date first, then optionally change the “as of” date when you need age on a milestone, deadline, or historical day. Results appear instantly as you adjust inputs—nothing else is required.",
+    "Most forms ask for your date of birth and quietly compute age behind the scenes—but when a rule says “age as of September 1” or “must be 18 on the day of travel,” a rounded year is not enough. This calculator takes a birth date and an optional as-of date, then returns years, months, days, hours, minutes, total days lived, and days until your next birthday. Change either date and the breakdown updates immediately, which is handy when you are checking more than one scenario without redoing mental math.",
   steps: [
-    "Enter your date of birth using the date picker (use the calendar control if your browser provides one).",
-    "Optionally set an “as of” date if you need age on a specific day; leave it blank to use today’s date automatically.",
-    "Read the breakdown for years, months, days, hours, minutes, total days lived, and how many days remain until your next birthday.",
+    "Enter your date of birth. If you were born near midnight or in a different timezone than where you live now, use the calendar date listed on your birth certificate or passport—that is what legal documents usually expect.",
+    "Leave the as-of date blank to measure age as of today, or set a specific day (past or future) when a policy names an eligibility snapshot—for example, “age on the first day of school” or “age on contract signing date.”",
+    "Review the full breakdown. Copy any result card you need, or use the share control to preserve the date pair in the URL for later reference.",
   ],
   aboutParagraphs: [
-    "Age is computed by measuring elapsed calendar time between midnight anchors for your birth date and the as-of date in your local timezone. That means the tool counts full calendar months and remaining days after complete months, rather than averaging month lengths or treating every month as 30 days. The approach mirrors how people normally describe age in conversation while remaining precise enough for milestones like birthdays, anniversaries, and eligibility checks.",
-    "Exact age matters whenever subtle timing affects outcomes: school enrollment cutoffs, sports divisions, legal thresholds, medical dosing by age bands, insurance quotes, employment eligibility, and prize competitions that define age “as of” a posted date. Saying “25 years old” is convenient, but planners often need the remainder in months and days to compare against notices that spell out deadlines or qualifying windows.",
-    "Typical uses include calculating age for forms and profiles, figuring “how old was I when…” by setting a past as-of date, preparing speeches or scrapbook milestones, tracking childhood development milestones, and sharing fun facts like total days alive. Because the tool includes hours and minutes, it also supports lightweight storytelling around birthdays without editing spreadsheets manually.",
+    "Age here is not “current year minus birth year.” The tool walks the calendar the same way people describe milestones: count complete years since the last birthday, then the remaining full months, then leftover days. February lengths and leap years are handled by the underlying date logic rather than by treating every month as thirty days or every year as 365 days flat.",
+    "That matters because small rounding errors show up in real decisions. A child born September 2 might be “five” in casual conversation but still four on the school district’s September 1 cutoff. A traveler who turns eighteen at 11 p.m. on departure day may still be seventeen under an airline rule that keys off calendar date, not clock time. Insurance and benefits language often references age bands where months still count.",
+    "Total days alive is included because many people find it more tangible than years alone. By your mid-fifties you have crossed roughly twenty thousand days—a number that lands differently in a retirement worksheet than “55.” Hours and minutes are there for lightweight curiosity (social posts, trivia), not for courtroom definitions, but they reinforce that age is elapsed time, not just a label.",
+    "The optional as-of field is the feature professionals use most. HR might need “age on date of hire,” genealogists ask “how old was this ancestor when the census was taken,” and parents of premature infants sometimes compare chronological age with corrected age discussed in pediatric follow-ups—always follow your clinician’s definition, but the as-of control lets you model a named day quickly.",
+  ],
+  extraSections: [
+    {
+      heading: "Common situations where exact age matters",
+      paragraphs: [
+        "School enrollment is a classic cutoff problem. A district that requires the child to be five on or before September 1 will reject a September 10 birth even though both kids are “about five” in the neighborhood. Enter the district’s snapshot date as the as-of value and compare months and days, not just years.",
+        "Sports leagues and competitions frequently publish age brackets “as of” a tournament date. A player who ages into the next bracket mid-season can be eligible or ineligible by a single day. Setting the tournament Saturday as the as-of date avoids arguing from memory.",
+        "Government benefits and licenses—driver permits, Medicare discussions, senior fares—often hinge on reaching a threshold on a particular calendar day. Forms may only show year of birth; when the rule text names a day, this calculator is the sanity check before you submit paperwork.",
+      ],
+    },
+    {
+      heading: "Mistakes to avoid when stating your age",
+      paragraphs: [
+        "Do not multiply years by 365 and call it done—leap years and the exact span since your last birthday will drift. Do not assume Korean age, traditional East Asian reckoning, or “counting birth as year one” unless the form explicitly asks for that system; international documents almost always want Western-style age on a stated date.",
+        "Near midnight births, compare the official document date rather than guessing from family stories. If two authorities disagree by one day, align to the document the receiving office will verify.",
+      ],
+    },
   ],
   faqItems: [
     {
-      question: "How does this age calculator decide my age?",
+      question: "How does this age calculator decide years, months, and days?",
       answer:
-        "It measures the time between your birth date and the as-of date using calendar-aware logic: complete years, then complete months within the remainder, then leftover days, plus finer units like hours and minutes based on the underlying timestamps. This avoids crude shortcuts like dividing total days by 365.25 when you need results aligned with how humans count birthdays.",
+        "It measures elapsed calendar time between your birth date and the as-of date in your local timezone. Whole years are counted only after your birthday has occurred in the as-of year; months and days borrow across uneven month lengths instead of using averages. That is why the result can read 36 years, 2 months, and 21 days rather than a single decimal age.",
     },
     {
-      question: "Can I calculate my age as of a past or future date?",
+      question: "Can I find how old I was on a past date?",
       answer:
-        "Yes. Change the optional as-of date to any valid day you want to measure against—past dates answer “how old was I on graduation day,” while future dates help with projected eligibility or planned milestones. Leave the field empty to anchor calculations to today, which updates whenever you revisit the page.",
+        "Yes—set the as-of date to graduation, a wedding, a historical event, or any day you care about. This is useful for narratives (“I was 17 when…”) and for verifying eligibility on an application that names a snapshot day. Leave as-of empty only when you want age right now.",
     },
     {
-      question: "Is timezone handled, and why does it matter here?",
+      question: "Why show hours, minutes, and days until my next birthday?",
       answer:
-        "Calculations use your browser’s local timezone because daily clocks—and birthday transitions—depend on where you are at midnight. If you compare notes with someone far away on the same calendar date, small differences near midnight are normal; pick consistent dates for forms rather than relying on UTC-only math.",
+        "Hours and minutes illustrate that age is a running clock, not a label that changes once a year. Days-until-birthday helps plan parties, renewals, or benefits that trigger on the anniversary. Neither replaces legal definitions that use only calendar dates, but they make planning tangible.",
     },
   ],
 };
 
 export const dateDifferenceEducational: EducationalBundle = {
   howToIntro:
-    "Use this tool whenever you need the span between two dates expressed as total days plus weeks, months, and years for planning or validation. Enter a start and end date, decide whether the last day should count, and optionally switch to business-day counting when weekends should disappear from your totals.",
+    "Need to know how long between two dates for a lease, a refund window, or a project phase? Pick a start and an end, then read total days plus weeks, months, and years in one pass. Two toggles save arguments later: include the end date when your document counts both endpoints, and switch to business days when weekends should not eat your allowance. The numbers refresh as soon as you change a field—no spreadsheet required.",
   steps: [
-    "Choose the starting date and ending date that bound the period you care about (contracts, trips, projects, or school terms).",
-    "Toggle “include end date” when your policy or agreement counts both the first and last calendar day in the range.",
-    "Enable business-days mode if you need weekday-only counts for SLAs or office schedules, then read totals alongside optional holiday exclusions elsewhere if needed.",
+    "Enter the start date and end date that bound the period you are measuring. For a move-out notice, the start might be the day notice was served; for a trial, the day you installed software.",
+    "Decide whether the end date itself counts. Rental and legal notices often use inclusive language (“through the 30th”); pure elapsed-time questions sometimes exclude the last day. Toggle include end date to match the paper.",
+    "Turn on business days only when the text says business, working, or banking days. Otherwise leave calendar-day mode and treat weekends as part of the span.",
   ],
   aboutParagraphs: [
-    "Calendar-day differences count every day on the wall calendar between two dates, including weekends and holidays. Business days (often called working days) typically mean Monday through Friday in many Western schedules, excluding weekends and sometimes public holidays depending on your employer, jurisdiction, or carrier. That distinction matters because legal notice periods, shipping estimates, and court deadlines regularly specify one style or the other—mixing them silently can push you past an important cutoff.",
-    "Many contracts phrase deadlines as “within 30 calendar days” or “within 10 business days.” Calendar-day windows move faster because Saturdays and Sundays still decrement the counter; business-day windows stretch across weekends and sometimes holidays. When two parties interpret the same phrase differently, date math becomes the quickest ground truth check—provided you align on whether the start or end day counts inclusively.",
-    "Common use cases include verifying apartment move-out windows, software trial lengths, return policies, payroll cycles, warranty periods, visa appointment spacing, research study visits, and sports registration ranges. If your workflow excludes holidays beyond weekends, pair date-difference totals with your organization’s official holiday calendar rather than assuming federal observances alone.",
+    "Calendar-day counting is the default most people need first. It includes Saturdays, Sundays, and public holidays unless a contract narrows the definition. If a store promises a refund within fourteen days of delivery, that is almost always fourteen calendar days unless the receipt says otherwise.",
+    "Business-day counting answers a different question: how many weekdays fall between two dates when Saturday and Sunday do not count. Carriers, banks, and courts use that model so a “five-day” promise does not imply a single business week when you start on a Thursday. This page can show business days alongside calendar totals when you enable the toggle; for holiday-specific closures, use the dedicated Business Days Calculator and add your own holiday list.",
+    "Month and year figures on the results grid are helpful summaries, but contracts rarely say “you have 1.4 months.” When money or status is on the line, cite total days and confirm inclusive versus exclusive endpoints. Leap Februaries and 31-day months are why mental math that treats every month as thirty days fails.",
+    "Sharing matters in disputes. The URL stores your dates and toggles so you can paste a link into an email thread instead of re-explaining which weekend you ignored.",
+  ],
+  extraSections: [
+    {
+      heading: "Calendar days vs business days in practice",
+      paragraphs: [
+        "Imagine a vendor email: “We will respond within ten business days.” If you submit a complaint on Friday, those ten weekdays usually spill into the following week and the week after—while the calendar still advances through two weekends you should not count. The same phrase with “ten calendar days” would expire sooner. Mixing the two without reading the definition is how people miss refund cutoffs by a full week.",
+        "Shipping labels exaggerate the confusion. A site may promise delivery in three to five business days while advertising a calendar-date arrival badge. Compare both numbers here when you care about warehouse SLAs versus customer-facing dates.",
+      ],
+    },
+    {
+      heading: "Examples people actually look up",
+      paragraphs: [
+        "Apartment move-out: a lease requires thirty days’ written notice from June 4. Calendar mode with inclusive end date shows whether July 3 or July 4 is the last lawful day—landlords and tenants argue over that single day more often than you would expect.",
+        "Software trials: “14-day trial from activation” typically means fourteen calendar days from the install timestamp’s date, not ten weekdays. SaaS invoices that say net-thirty are calendar unless the MSA defines business days.",
+        "Immigration and visas: “valid for 180 days from entry” is calendar language; overstaying by one calendar day can have outsized consequences. Always mirror the government handout, not your employer’s payroll calendar.",
+        "Warranty and returns: one-year warranties follow anniversary logic; 30-day return windows follow day counts. Crossing February in a leap year adds a day compared with multiplying 365 in your head.",
+      ],
+    },
   ],
   faqItems: [
     {
-      question: "What is the difference between calendar days and business days here?",
+      question: "Should I include the end date in the count?",
       answer:
-        "Calendar-day mode counts every day between your dates (subject to your inclusive/exclusive setting). Business-day mode counts Monday–Friday within the span, skipping weekends; combine this tool’s outputs with your own holiday list when statutes or SLAs exclude specific public holidays.",
+        "Include it when the document uses words like through, inclusive, or counts both the first and last day. Exclude it when you are measuring a pure gap similar to subtracting timestamps. If a lease worked example is provided, match that example before debating theory.",
     },
     {
-      question: "When should I include the end date?",
+      question: "When should I enable business days on this page?",
       answer:
-        "Include it when language like “through,” “inclusive,” or “both dates count” applies—leases and notices sometimes specify inclusive counting. Exclude it when measuring pure spans similar to subtraction between timestamps or when policies mirror “after day one” conventions—when unsure, confirm against your document’s worked example.",
+        "Enable it when the policy explicitly references business, working, or banking days. For policies that stay silent, assume calendar days unless a lawyer or regulator tells you otherwise. Federal holidays are not removed automatically here—add them on the Business Days Calculator when your institution publishes a closure list.",
     },
     {
-      question: "Why might totals differ from a mental estimate?",
+      question: "Why do months and years not match my hand calculation?",
       answer:
-        "Months have unequal lengths, leap years add February days, and inclusive versus exclusive endpoints shift totals by one. Different tools also vary on whether month/year rollups are approximate breakdowns versus strict calendar-month arithmetic—use total days when you need an exact bridge between distant dates.",
+        "Months have different lengths, and month/year rollups are descriptive breakdowns of the same underlying day span. If two tools disagree, compare total days first—that is the figure most likely to align with a strict reading of the contract.",
     },
   ],
 };
 
 export const daysUntilEducational: EducationalBundle = {
   howToIntro:
-    "This countdown turns any future target into days, hours, minutes, and seconds so you can visualize proximity to launches, celebrations, or compliance deadlines. Label the event for clarity, pick the exact target date, or tap a quick preset when you want to jump to common holidays without typing.",
+    "Deadlines feel abstract until you see a clock. Label your event, choose the target date, and watch days, hours, minutes, and seconds count down in real time. Quick buttons preload a few common holidays so you are not typing from memory—still verify religious dates that move with the moon. The page updates every second while it stays open, which is useful for launch nights, exam weeks, or “how long until the permit expires” without refreshing.",
   steps: [
-    "Give your countdown a friendly label so copied snippets and screenshots stay recognizable when you share them.",
-    "Select the precise target date—your browser supplies timezone-aware midnight transitions automatically.",
-    "Watch the live counters tick downward every second; adjust the label or date anytime without refreshing manually.",
+    "Name the countdown something you will recognize later—Court hearing, Product launch, Lease end—so screenshots and shared links make sense to teammates.",
+    "Set the target date. Midnight boundaries follow your device’s local timezone; if the official deadline is tied to another zone (airline, broadcast), align to that authority’s date.",
+    "Use the preset chips for quick experiments, then fine-tune manually. Copy results when you need a static number for email; leave the tab open when you want a live clock.",
   ],
   aboutParagraphs: [
-    "Countdowns convert abstract calendar targets into tangible urgency: seeing days remaining helps teams prioritize backlog work, families coordinate travel, and individuals pace savings or study plans. Breaking time into multiple units matters because humans perceive “three weeks” differently than “504 hours,” even though both describe the same horizon.",
-    "Event planners pair countdowns with milestones—booking venues early when hundreds of days remain, shifting to daily tasks inside the final week. Product teams align launch countdowns with marketing beats, freeze windows, and compliance submissions that must precede public release. Personal finance workflows use countdowns to schedule final mortgage payments, graduation dates, or retirement targets.",
-    "Deadline tracking benefits from seconds-level granularity when automation hooks are sensitive near cutoffs—registration systems closing at midnight, auction timers, or broadcast slots. Pair countdown outputs with named labels so stakeholders know which obligation you reference when multiple deadlines overlap during busy seasons.",
+    "Countdowns answer a psychological question: how soon is soon? Project managers use them to align engineering freezes with marketing beats. Students use them for exam pacing. Families use them for travel and visa appointments where lodging must be booked before tickets prices spike.",
+    "Breaking the horizon into days and hours prevents sloppy rounding. Saying “about three weeks” is fine socially; wiring money or filing court papers benefits from knowing whether you have twenty days or twenty-two when weekends sit in the middle.",
+    "Preset holidays are starting points, not legal authorities. Islamic observances in particular can shift with moon sighting. Treat buttons as drafts and confirm with local announcements when precision affects time off work or travel.",
+    "Pair this tool with date-difference math when you need to measure backward from a deadline. If a regulation says “file at least 30 days before,” compute the latest allowable start on the Date Difference Calculator, then pin the resulting day here for a live reminder.",
+  ],
+  extraSections: [
+    {
+      heading: "Where countdowns beat calendar math alone",
+      paragraphs: [
+        "Product launches: engineering wants a code freeze three days before marketing sends email. A labeled countdown makes the handoff visible to people who do not live in the issue tracker.",
+        "Personal finance: final mortgage payment, student loan payoff, or tax installment due dates are single days with high penalties. Seconds are overkill, but watching days tick down beats a sticky note that falls behind the monitor.",
+        "Events and ticketing: concerts and conferences sell out in waves. A countdown to on-sale time helps teams coordinate queue tests and support staffing.",
+      ],
+    },
   ],
   faqItems: [
     {
-      question: "Does the countdown update automatically?",
+      question: "Does the timer keep running if I leave the tab open?",
       answer:
-        "Yes. The component refreshes every second using your device clock, so leaving the page open keeps the timer current without manual reloads. If you suspend your laptop or lose focus for long stretches, expect a quick catch-up when the tab wakes.",
+        "Yes. It refreshes every second based on your device clock. If the computer sleeps for hours, the display catches up when the tab wakes. For mission-critical cutoffs, still set a backup reminder—browsers throttle background tabs.",
     },
     {
-      question: "Can I reuse holiday shortcuts instead of typing dates?",
+      question: "Are the holiday shortcut dates guaranteed?",
       answer:
-        "Quick buttons preload widely observed holidays for convenience, but civic and religious calendars shift—Islamic holidays especially depend on moon sighting communities. Treat preset religious dates as planning aids and verify against authoritative announcements when precision matters.",
+        "No. They are convenience presets for common Western and widely observed dates. Eid, Diwali, and other lunar or regional calendars can move. Use authoritative calendars for time off requests and travel bookings.",
     },
     {
-      question: "Why might my countdown differ from someone else’s?",
+      question: "Why might my countdown differ from a friend’s?",
       answer:
-        "Timezone offsets split the calendar near midnight, so two people celebrating “the same day” might disagree about remaining seconds around boundaries. Align on the timezone assumed by your official deadline source—venue contracts, airline itineraries, or regulatory postings—when coordinating remotely.",
+        "Timezones split the calendar near midnight. Two people targeting “midnight on the 15th” in different cities can see different remaining hours. Match the timezone named in your ticket, contract, or court order.",
     },
   ],
 };
 
 export const businessDaysEducational: EducationalBundle = {
   howToIntro:
-    "Measure Monday-through-Friday spans between two dates when weekends should not consume your allowance of working days. Optional holiday dates remove additional non-working days—useful when corporate closures or statutory observances differ from generic weekend skipping alone.",
+    "When a contract says “five business days,” weekends are supposed to be invisible—but holidays are not universal. Enter a start and end date, optionally tag each holiday your office actually closes, and read a weekday-only total. This is the calculator to open when a bank, insurer, or judge counts Monday–Friday and you need to know whether a Friday submission pushes the clock to the following week.",
   steps: [
-    "Enter the inclusive start and end dates representing your SLA window, notice period, or shipping timeline.",
-    "Add each holiday date your organization treats as closed using the optional holiday picker plus list chips.",
-    "Review the single business-day total that excludes weekends and every holiday you explicitly recorded.",
+    "Choose the start and end of the window named in your notice, policy, or SLA. If the document says “from the date of receipt,” use the receipt date—not the day you discovered the email.",
+    "Add holidays your organization observes. Federal lists help banks; your startup might take different days off. Each holiday you add is removed from the business-day tally.",
+    "Compare the business-day total with a calendar-day count on the Date Difference Calculator when the other side might be counting differently. If the gap is more than two days, clarify in writing.",
   ],
   aboutParagraphs: [
-    "A business day typically means a weekday when normal commerce occurs—often Monday to Friday—while Saturdays and Sundays fall outside that cadence in many countries. Financial institutions, government offices, and logistics carriers frequently cite business-day turnaround exactly because weekends would distort expectations if counted blindly. Some industries adopt Sunday–Thursday patterns regionally, so align terminology with your counterpart before debating totals.",
-    "Contracts rely on business-day math for escrow funding windows, insurance claim acknowledgments, arbitration responses, and vendor penalties. Shipping carriers quote business days separately from transit calendars because warehouses may sit idle weekends even while trucks move. HR teams interpret paid-time-off policies using business days so partial weeks reflect actual shifts scheduled.",
-    "Because statutory holidays vary by nation, province, and employer, this calculator lets you subtract bespoke closures rather than guessing a universal federal list. Banks observing Juneteenth or regional festivals can mirror reality precisely—critical when missing even one removed day invalidates compliance.",
+    "A business day usually means Monday through Friday in U.S. commercial language, excluding Saturday and Sunday. It does not automatically exclude Thanksgiving unless your definition says so—which is why this tool lets you subtract explicit holiday dates instead of guessing a federal chart that your employer might not follow.",
+    "Financial regulations made business-day language common. ACH holds, wire cutoffs, and funds-availability disclosures reference Federal Reserve business days. Courts layer state holiday rules on top of weekday counting. A filing due in “three business days” after a Tuesday service hits Friday; after a Thursday service it often lands Wednesday of the next week.",
+    "Logistics quotes business-day transit separately from calendar delivery promises. A carrier’s “five business days” starting Thursday can arrive Thursday of the following week while nine calendar days elapse—customers who count calendar days feel lied to even when the carrier met its definition.",
+    "HR uses business days for internal review periods (“respond within five business days”) but calendar days for benefits that follow statutes. Read each clause independently; mixing models in one email thread causes expensive confusion.",
+  ],
+  extraSections: [
+    {
+      heading: "Why five business days is not one calendar week",
+      paragraphs: [
+        "One calendar week is always seven days. Five business days are five weekdays—often Monday through Friday of the same week only if you start on Monday. Start on Wednesday and five business days run through Tuesday of the next week, crossing a weekend that does not count even though you lived through it.",
+        "Start on Friday and five business days typically means Friday plus Monday through Thursday—nine calendar days on the ground. That is normal, not a delay, under business-day wording.",
+      ],
+    },
+    {
+      heading: "Scenarios worth modeling before you commit",
+      paragraphs: [
+        "Wire release language: “Funds available within two business days” after a Friday deposit often means Tuesday, not Sunday. Model Friday as start with Monday’s holiday if your bank is closed.",
+        "Insurance acknowledgments: carriers sometimes promise responses in ten business days. Add state holidays the home office observes even if your branch stayed open.",
+        "Court responses: local rules may define business days and extend deadlines when holidays abut weekends. When stakes are high, confirm with counsel; use this calculator as arithmetic, not legal advice.",
+        "Vendor SLAs: a software outage ticket opened Thursday before a three-day weekend can breach a “resolve in five business days” clause faster than managers expect—run the dates before you promise executives a fix date.",
+      ],
+    },
   ],
   faqItems: [
     {
-      question: "What counts as a business day in this tool?",
+      question: "What exactly counts as a business day here?",
       answer:
-        "Weekdays Monday through Friday inside your selected date span count toward the total; Saturdays and Sundays never count. Provide explicit holiday dates to exclude additional closures—otherwise only weekends are removed.",
+        "Monday through Friday between your selected dates, minus any holiday dates you explicitly add. Saturdays and Sundays never count. If you need calendar days including weekends, use the Date Difference Calculator instead.",
     },
     {
-      question: "How do I add or remove custom holidays?",
+      question: "How do I handle a floating holiday like Thanksgiving?",
       answer:
-        "Pick a holiday date, click Add Holiday to append it to the removable chip list, and tap any chip to delete mistaken entries. Holidays are interpreted using the same local-date semantics as your start and end inputs.",
+        "Calculate the date for that year (U.S. Thanksgiving is the fourth Thursday in November) and add it with the holiday picker. The chip list lets you remove a date if you added it by mistake.",
     },
     {
-      question: "Why doesn’t this guess public holidays automatically?",
+      question: "Why not auto-fill federal holidays for me?",
       answer:
-        "Observances shift by jurisdiction and sometimes by employer discretion—automatic guessing risks silent errors near statutory debates or union contracts. Explicit holiday tags keep accountability aligned with your official calendar.",
+        "Employers, states, and countries disagree on observances. Auto-removing the wrong holiday is worse than asking you to tag the closures your policy actually recognizes. Banks, courts, and factories each publish their own calendars.",
     },
   ],
 };
 
 export const birthdayCalculatorEducational: EducationalBundle = {
   howToIntro:
-    "Explore fun birthday math—weekday you were born, zodiac grouping, numerology-style life path digits, upcoming celebration timing, and even how many seconds you have been alive for trivia threads. Enter once and skim cards without exporting spreadsheets.",
+    "Beyond how many years you have lived, birthdays carry trivia people actually repeat: weekday born, zodiac label, numerology-style life path digit, the calendar date of your next birthday, and a running count of seconds since birth. Enter a birth date once and scan the cards—useful for party icebreakers, genealogy notes, or checking whether your next birthday lands on a weekend.",
   steps: [
-    "Select your complete birth date using the date picker so downstream symbolism references the correct calendar day.",
-    "Glance at cards showing weekday, zodiac label, life path number, upcoming birthday string, and seconds lived.",
-    "Share or screenshot responsibly—use authoritative sources for legal identity documents rather than playful numerology outputs.",
+    "Pick the birth date shown on your ID if you are quoting something official; pick the family-celebration date only when you know it differs and you are doing informal trivia.",
+    "Read weekday and zodiac for storytelling; treat life path numbers as reflective prompts, not predictions.",
+    "Watch seconds-old tick upward if the page stays open—fun for social posts, not for legal age proof.",
   ],
   aboutParagraphs: [
-    "Western zodiac signs partition the tropical year into twelve roughly month-long slices tied to the Sun’s apparent path; each slice inherits symbolic traits used culturally for personality shorthand—not astronomy-grade predictions. People enjoy comparing signs at parties because the categories spark conversation even when individuals interpret them loosely.",
-    "Life path numbers come from digit-reduction traditions associated with numerology: birth dates collapse through repeated summing until a single digit (or master numbers in some schools) emerges. Practitioners treat the result as a reflective lens rather than deterministic fate—think journaling prompts rather than verified science.",
-    "Knowing your weekday birth anchors memories (“born on a Tuesday”) while upcoming birthday countdowns coordinate surprises. Seconds-old counters dramatize scale for social posts; pairing them with timezone awareness avoids awkward mismatches near midnight during celebrations.",
+    "Weekday-of-birth is surprisingly memorable in family lore (“Dad was born on a Tuesday during a snowstorm”). It also helps genealogists align census records when only partial dates appear.",
+    "Western zodiac signs divide the tropical year into twelve slices by the Sun’s position. Horoscopes are cultural entertainment; the calculator labels the sign tied to your calendar birth date using common tropical boundaries.",
+    "Life path numbers come from numerology: digits of the birth date reduce through repeated sums until you reach a single digit or a master number in some schools. Treat the output as conversation, not diagnosis.",
+    "Upcoming birthday and seconds-old pair well with the main Age Calculator when you need both ceremony planning and formal years-months-days for paperwork.",
+  ],
+  extraSections: [
+    {
+      heading: "When this page helps more than a plain age tool",
+      paragraphs: [
+        "Scrapbooks and speeches: mention weekday and zodiac for color without opening separate reference sites.",
+        "Classroom activities: students compare seconds lived to dramatize exponential growth—always supervise what they share online.",
+        "Leap-day births: if you were born February 29, upcoming birthday displays may show February 28 in non-leap years depending on how platforms observe it; verify against local custom before booking venues.",
+      ],
+    },
   ],
   faqItems: [
     {
-      question: "Are zodiac and life path results scientific facts?",
+      question: "Is the zodiac sign astronomically precise?",
       answer:
-        "They are cultural and numerological frameworks meant for entertainment or reflection. Astrological signs follow seasonal slices; life path numbers follow traditional reduction recipes—neither replaces medical, legal, or financial advice grounded in verified documentation.",
+        "It follows common tropical zodiac date ranges used in horoscopes, not a full astronomical ephemeris. Precession shifted constellations over millennia; mainstream sun-sign lists ignore that shift by design.",
     },
     {
-      question: "Why does “seconds old” change continuously?",
+      question: "Why do seconds old keep increasing?",
       answer:
-        "Seconds increment live based on the ticking clock between your birth instant and now, so values grow while the page stays open. Large integers suit curiosity or novelty contests rather than precise statutory definitions of age.",
+        "The page recalculates against the current clock. It is a live counter, not a frozen snapshot. Refresh or revisit for a new snapshot if you need a fixed number for a post.",
     },
     {
-      question: "How should I reconcile this with the dedicated Age Calculator?",
+      question: "Should I use this output on government forms?",
       answer:
-        "Use the Age Calculator when you need structured years/months/days for milestone tracking or eligibility framing. Use this Birthday Calculator when symbolism, weekday trivia, or playful counters matter more than formal breakdown tables.",
+        "No. Use the Age Calculator for years-months-days tied to eligibility. Use this page for supplemental trivia and planning the next celebration date.",
     },
   ],
 };
 
 export const weeksBetweenDatesEducational: EducationalBundle = {
   howToIntro:
-    "Translate two endpoints into whole seven-day bundles plus leftover days—ideal when milestones measure progress weekly (gestational schedules, agile sprints, training rotations). Supply both dates and read full weeks alongside remainder context immediately.",
+    "Some schedules speak in weeks—pregnancy checklists, agile sprints, training blocks—while contracts still store calendar dates. Enter two endpoints and read full weeks plus leftover days instead of mentally dividing by seven and losing the remainder.",
   steps: [
-    "Enter the earlier boundary date first and the later boundary second so directionality matches your narrative.",
-    "Confirm both dates capture the intended calendar day—especially around midnight edits near timezone boundaries.",
-    "Interpret full weeks plus remaining days; pair with the Date Difference Calculator when month-based language dominates instead.",
+    "Set the earlier date as start and the later as end so the breakdown reads forward in time.",
+    "Check full weeks for sprint or gestational milestones; use remaining days when a protocol says “32 weeks and 4 days.”",
+    "Jump to the Date Difference Calculator if the stakeholder quotes months or raw calendar days instead.",
   ],
   aboutParagraphs: [
-    "Week-based intervals chunk continuous timelines into repeatable seven-day modules humans track easily—school cycles, payroll cadences, fitness challenges, and agile retrospectives all speak “weeks” naturally. Medical contexts frequently cite gestational age in weeks because fetal development guidelines publish weekly milestones, making leftover days secondary but still logged.",
-    "Project planners stack weeks against burn charts: knowing twenty full weeks remain highlights staffing sufficiency differently than saying 140 calendar days when weekends might be non-working. Coaches schedule deload weeks and athletes taper using week counts more than raw day totals.",
-    "When bridging legal or contractual phrases referencing weeks, verify inclusive/exclusive endpoints separately—some statutes describe spans inclusively while agile math treats sprint boundaries as half-open intervals. If stakeholders disagree, publish both week counts and raw day counts side by side for clarity.",
+    "Full weeks are whole seven-day blocks between your dates; remaining days are the tail after those blocks. That mirrors how clinicians describe pregnancy length and how coaches plan taper weeks without pretending every month has four neat weeks.",
+    "Project burn charts often think in weeks while finance thinks in months. Publishing both week and day remainders prevents someone from rounding 44 days down to “six weeks” when the plan needed six weeks plus two days of buffer.",
+    "Inclusive versus exclusive endpoints still apply. Agile teams sometimes treat sprint boundaries as half-open intervals; legal notices may count both start and end days. When two departments disagree, show them both representations.",
+  ],
+  extraSections: [
+    {
+      heading: "Fields that default to week language",
+      paragraphs: [
+        "Obstetrics: guidelines reference gestational age in weeks; leftover days matter near term decisions. This tool does not replace medical dating by ultrasound—follow your clinic’s chart.",
+        "Software delivery: a PI might schedule seven two-week sprints; mapping calendar start/end dates to “14 full weeks” helps capacity planning.",
+        "Fitness mesocycles: many programs run 8–12 week blocks. Aligning block end to a calendar race day avoids off-by-one recovery weeks.",
+      ],
+    },
   ],
   faqItems: [
     {
-      question: "Why show both full weeks and remaining days?",
+      question: "Is this the same as dividing total days by seven?",
       answer:
-        "Many real-world schedules stack whole weeks but still log stray days—pregnancy tracking and partial sprint spillover being classic examples. Surfacing both prevents rounding seven-day multiples incorrectly when an endpoint lands midweek.",
+        "Arithmetic division gives a similar number but hides remainder semantics. Integer weeks plus explicit remaining days match how people discuss partial weeks in clinics and sprints.",
     },
     {
-      question: "How is this different from dividing total days by seven?",
+      question: "Does it skip weekends?",
       answer:
-        "Integer weeks plus remainder preserve intuitive grouping tied to calendar landmarks; naive division yields similar arithmetic but obscures whether weekends inside the span matter for your policy. Choose the representation that matches your contract language.",
+        "No. It counts calendar weeks unless you separately analyze business days elsewhere. A “week” here is seven consecutive calendar days in the span.",
     },
     {
-      question: "Can I use this for pregnancy week tracking?",
+      question: "Can I share the date range?",
       answer:
-        "It offers mechanical week/day decomposition between two dates you supply. Clinical gestational age follows protocols defined by your care team—always defer to provider guidance when medical decisions hang on timing.",
+        "Yes. The URL encodes your start and end values so teammates see the same inputs without retyping.",
     },
   ],
 };
 
 export const addDaysToDateEducational: EducationalBundle = {
   howToIntro:
-    "Start from any anchor date and march forward (or backward with negative amounts) across days, weeks, months, or years. This mirrors mental math people perform for warranties, immigration appointments, or phased rollouts—without hand-counting on wall calendars.",
+    "Start on a known date—purchase, filing, surgery, hire—and roll forward or backward by days, weeks, months, or years. Negative numbers subtract time, which is how you back into “latest start date to still meet a deadline.” The answer includes the resulting calendar date and weekday so you can compare against a PDF notice without counting squares on a wall calendar.",
   steps: [
-    "Pick the calendar date that anchors your calculation—activation day, filing date, surgery date, or contract signature.",
-    "Enter the numeric offset and choose units (days, weeks, months, years); use negative numbers to subtract time.",
-    "Read the resulting calendar date and weekday to confirm against official notices or ticketing systems.",
+    "Anchor the starting date: delivery day for a return policy, grant award date for reporting, signature date for a contract.",
+    "Enter the offset and pick the unit named in the document—do not substitute thirty days when the text says one calendar month.",
+    "Read the landing date and weekday; cross-check February and month-end anchors if your span crosses a short month.",
   ],
   aboutParagraphs: [
-    "Adding calendar months or years follows date-picker semantics: month-end anchors snap to the last valid day in shorter months—January 31 plus one month lands in late February rather than throwing errors. That behavior tracks how banking systems schedule recurring transfers when users say “same day next month.”",
-    "Warranty expirations often read “one year from purchase” but returns policies sometimes say “30 days from delivery”—both translate cleanly into anchored offsets when you know which timestamp counts. Visa pathways and immigration notices similarly describe filing windows relative to notice dates or entry stamps.",
-    "Project managers chain offsets to build Gantt dependencies: design finishes plus ten business days might feed manufacturing, while marketing waits calendar-month boundaries for budget closes. Expressing offsets numerically reduces ambiguity compared to verbal phrases like “early next quarter.”",
+    "Adding months respects month-length quirks: January 31 plus one month becomes the last day of February in many systems, not an error. That matches bank “same day each month” scheduling more than adding thirty flat days.",
+    "Visa and benefits letters often say “within 90 days of notice.” Anchor the notice date here instead of guessing three months on a wall calendar.",
+    "Warranties may say one year from purchase while returns say thirty days from delivery—different anchors, same tool. Pick the correct start date before arguing about the result.",
+    "Project planners chain offsets: design complete plus ten business days (check Business Days Calculator) versus marketing launch plus three calendar months (use month unit here).",
+  ],
+  extraSections: [
+    {
+      heading: "When days and months diverge",
+      paragraphs: [
+        "Thirty days from March 15 lands mid-April; one month from March 15 lands April 15. Legal drafts sometimes use the words interchangeably by mistake—run both if the contract is ambiguous.",
+        "Leap years: adding one year across February 29 birthdays or contract anniversaries needs the year that actually contains February 29. Pair with the Leap Year Calculator when February is in play.",
+      ],
+    },
   ],
   faqItems: [
     {
-      question: "How do negative amounts work?",
+      question: "How do negative values work?",
       answer:
-        "Negative numbers subtract time along the same unit you selected—useful for backtracking from a known deadline to infer the latest start date that preserves buffer. Double-check unit choice because subtracting months versus subtracting thirty days diverges near month ends.",
+        "They subtract along the chosen unit. Useful for back-planning: if the filing must arrive by the 30th, subtract the required lead time from that date to see the latest day you can start gathering signatures.",
     },
     {
-      question: "Why might adding one month differ from adding thirty days?",
+      question: "Why did adding one month not equal adding 30 days?",
       answer:
-        "Calendar months vary in length; rolling forward by months preserves day-of-month intent where possible, while rolling by days counts uniform twenty-four-hour slices. Legal documents sometimes specify which interpretation applies—verify rather than assuming.",
+        "Months have different lengths. Month-based addition tries to preserve the day-of-month when possible; day-based addition marches in 24-hour steps. Contracts may specify which interpretation governs.",
     },
     {
-      question: "Can I combine this with leap year checks?",
+      question: "Which preset pages overlap with this tool?",
       answer:
-        "Yes—after projecting dates across February boundaries, spot-check February lengths using the Leap Year Calculator when contracts hinge on whether an anniversary exists in a given year.",
+        "Shortcuts like 30 days from today fix today as the anchor. Use this calculator when the anchor is any other date or when you need weeks, months, or years instead of only days.",
     },
   ],
 };
 
 export const leapYearEducational: EducationalBundle = {
   howToIntro:
-    "Determine whether a Gregorian year includes February 29 and inspect neighboring leap years for storytelling or validation. Enter any positive year to see yes/no output plus previous/next leap anchors and total day counts.",
+    "Type any year to see if it is a leap year under Gregorian rules, how many days the year contains, and the nearest leap years before and after. Handy when a contract crosses February, when you are debugging date code, or when a friend born on the 29th jokes about being “four years old.”",
   steps: [
-    "Type the four-digit year you want to audit—historical research, software tests, or birthday curiosity.",
-    "Read whether it qualifies as a leap year along with computed neighbors for quick sequencing.",
-    "Cross-check unusual centuries mentally: recall that century years must clear extra divisibility hurdles unless they satisfy the 400-year exception.",
+    "Enter the year you are researching—tax year, birth year, release year of a software product.",
+    "Read yes/no plus previous and next leap years to orient long spans quickly.",
+    "Remember the century exception: years divisible by 100 are not leap years unless divisible by 400.",
   ],
   aboutParagraphs: [
-    "Leap years exist because Earth’s orbit lasts roughly 365.2422 solar days while calendars insist on integer day counts. Accumulating fractional days would drift seasons across months over centuries, so leap days rebalance the reckoning—traditionally inserted at February’s end to minimize disruption to festival months Romans cared about.",
-    "The Gregorian refinement adds nuance: years divisible by four leap unless divisible by 100, yet years divisible by 400 still leap. That triple rule retired excessive leap days introduced by simpler quadrennial schemes—1700 and 1800 skipped leaps despite being divisible by four, while 2000 leaped because 400 divides evenly.",
-    "Famous leap lore includes rare February 29 birthdays (“leaplings”), synchronized proposals folklore on Sadie Hawkins-style traditions, and software bugs when programmers treated February as always twenty-eight days. Astronomers still prefer Julian dates internally while civil calendars polish human readability.",
+    "Earth’s orbit is about 365.2422 days. A calendar with only 365-day years would drift seasons over centuries. Inserting February 29 in most years divisible by four keeps solstices aligned with picnic weather.",
+    "The Gregorian tweak skips most century years (1900 no, 2000 yes) to fix overshoot from leap-every-four alone. Spreadsheet and SQL bugs often come from treating every fourth year as leap without the 100/400 nuance.",
+    "Leap day affects age and anniversary math when policies say “annual” but February has no 29 in common years. Systems pick February 28 or March 1 for observance—humans should confirm which rule applies.",
+    "Historians still translate Julian versus Gregorian dates for old records; this tool applies modern Gregorian rules forward and backward for mechanical checks, not archival diplomacy.",
+  ],
+  extraSections: [
+    {
+      heading: "Leap year facts that show up in support tickets",
+      paragraphs: [
+        "Payroll and interest systems that hard-code 365-day years mis-accrue interest in 366-day years unless they include February 29 in day-count conventions.",
+        "Product trials advertised as “365 days” differ from “one year” when the year is a leap year—customers notice an extra day.",
+        "Famous leap-day births (Ja Rule, Tony Robbins, Dinah Shore) highlight that celebration days and legal anniversaries can diverge in off-years.",
+      ],
+    },
   ],
   faqItems: [
     {
-      question: "Why do century years sometimes skip leap day?",
+      question: "Why was 2000 a leap year but 1900 was not?",
       answer:
-        "Julian-style leap-every-four-years slightly overcorrected solar drift. Gregorian reform subtracted three leap days every four centuries by skipping century years unless divisible by 400—keeping the calendar aligned across millennia without seasonal creep.",
+        "1900 is divisible by 4 and 100 but not 400. 2000 is divisible by 400. That exception keeps the calendar within about a day of the solar year over long horizons.",
     },
     {
-      question: "Does this reflect my locale’s historical calendar?",
+      question: "Does this tool change historical dates before 1582?",
       answer:
-        "It applies the modern Gregorian leap rule globally for mechanical checks. Countries adopted Gregorian reforms across different years—historians analyzing ancient documents must translate between Julian and Gregorian contexts separately.",
+        "It applies Gregorian leap rules mechanically. Documents from regions that had not adopted the reform yet need historian-grade conversion, not a quick web check.",
     },
     {
-      question: "How does leap status affect date-add calculations?",
+      question: "How does leap status interact with adding dates?",
       answer:
-        "February gains an extra day during leap years, shifting offsets that cross late February. Always verify crossing boundaries when contracts mention annual anniversaries anchored near February ends.",
+        "Crossing February in a leap year adds a day compared with a common year. When you add one year to a February 29 anchor, verify whether your bank or contract uses February 28 or March 1 in non-leap years.",
     },
   ],
 };
