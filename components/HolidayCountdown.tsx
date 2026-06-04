@@ -6,7 +6,11 @@ import CalculatorEducationalContent from "@/components/CalculatorEducationalCont
 import CalculatorLayout from "@/components/CalculatorLayout";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import HolidayCountdownTimer from "@/components/HolidayCountdownTimer";
-import type { FaqItem } from "@/components/FaqSection";
+import {
+  buildHolidayPageContext,
+  getHolidayPageExtended,
+  isExtendedHolidaySlug,
+} from "@/lib/educationalCopy/holidayPagesExtended";
 import { getHolidayEducationalBase } from "@/lib/educationalCopy/holidays";
 import type { HolidaySlug } from "@/lib/programmaticPages";
 
@@ -21,23 +25,28 @@ export default function HolidayCountdown({ slug, holidayName, targetDate, isAppr
   const now = new Date();
   const daysLeft = Math.max(0, differenceInCalendarDays(targetDate, now));
   const formattedDate = format(targetDate, "EEEE, MMMM d, yyyy");
-  const educational = getHolidayEducationalBase(slug);
+  const extended = getHolidayPageExtended(slug);
 
-  const faq = [
-    {
-      question: `How many days until ${holidayName}?`,
-      answer: `There are ${daysLeft} calendar days until ${holidayName} on ${formattedDate} (local date display). Use the live timer for second-level pacing when coordinating venue doors, broadcast cues, or volunteer shifts; remember moon-sighted holidays may shift by a day versus printed estimates.`,
-    },
-    {
-      question: `What date is ${holidayName} this cycle?`,
-      answer: `${holidayName} falls on ${formattedDate} for the upcoming occurrence highlighted above. Multicultural households should confirm congregational announcements when communities observe distinct calendars or moon committees.`,
-    },
-    {
-      question: `Does this ${holidayName} countdown update live?`,
-      answer:
-        "Yes. The timer subtracts your current local clock from the target instant each second, so leaving the tab open keeps parity with midnight crossings and travel-day adjustments without manual refresh.",
-    },
-  ];
+  const faq = extended && isExtendedHolidaySlug(slug)
+    ? extended.buildFaq(buildHolidayPageContext(slug, targetDate, daysLeft))
+    : [
+        {
+          question: `How many days until ${holidayName}?`,
+          answer: `There are ${daysLeft} calendar days until ${holidayName} on ${formattedDate} (local date display). Use the live timer for second-level pacing when coordinating venue doors, broadcast cues, or volunteer shifts; remember moon-sighted holidays may shift by a day versus printed estimates.`,
+        },
+        {
+          question: `What date is ${holidayName} this cycle?`,
+          answer: `${holidayName} falls on ${formattedDate} for the upcoming occurrence highlighted above. Multicultural households should confirm congregational announcements when communities observe distinct calendars or moon committees.`,
+        },
+        {
+          question: `Does this ${holidayName} countdown update live?`,
+          answer:
+            "Yes. The timer subtracts your current local clock from the target instant each second, so leaving the tab open keeps parity with midnight crossings and travel-day adjustments without manual refresh.",
+        },
+      ];
+
+  const educational = extended?.educational ?? getHolidayEducationalBase(slug);
+  const extraSections = extended?.extraSections;
 
   return (
     <CalculatorLayout>
@@ -64,7 +73,8 @@ export default function HolidayCountdown({ slug, holidayName, targetDate, isAppr
         howToIntro={educational.howToIntro}
         steps={educational.steps}
         aboutParagraphs={educational.aboutParagraphs}
-        faqItems={faq as [FaqItem, FaqItem, FaqItem]}
+        extraSections={extraSections}
+        faqItems={faq}
       />
 
       <section className="mt-8 rounded-xl border border-gray-200 p-4">
@@ -79,6 +89,14 @@ export default function HolidayCountdown({ slug, holidayName, targetDate, isAppr
           >
             Date Difference Calculator
           </Link>
+          <Link href="/add-days-to-date" className="text-teal-700 underline underline-offset-2 hover:text-teal-900">
+            Add Days to Date
+          </Link>
+          {slug === "halloween" || slug === "thanksgiving" ? (
+            <Link href="/120-days-from-today" className="text-teal-700 underline underline-offset-2 hover:text-teal-900">
+              120 Days From Today
+            </Link>
+          ) : null}
         </div>
       </section>
     </CalculatorLayout>

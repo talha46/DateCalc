@@ -4,8 +4,12 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorEducationalContent from "@/components/CalculatorEducationalContent";
 import CalculatorLayout from "@/components/CalculatorLayout";
-import type { FaqItem } from "@/components/FaqSection";
 import FaqJsonLd from "@/components/FaqJsonLd";
+import {
+  buildDays120Faq,
+  getDays120EducationalBase,
+  getDays120ExtraSections,
+} from "@/lib/educationalCopy/daysFromToday120";
 import {
   buildDaysFromTodayFaqDetailed,
   getDaysFromTodayEducationalBase,
@@ -23,17 +27,20 @@ export default function DaysFromTodayCalculator({ days }: DaysFromTodayCalculato
   const weeksFromToday = days / 7;
   const monthsFromToday = differenceInMonths(resultDate, startDate);
 
+  const formattedLongDate = format(resultDate, "EEEE, MMMM d, yyyy");
+  const weeksDecimal = weeksFromToday.toFixed(2);
+  const is120DayPage = days === 120;
+
   const extraCopy = getDaysFromTodayExtraCopy(days);
-  const educationalBase = getDaysFromTodayEducationalBase(days);
-  const faqDetailed = buildDaysFromTodayFaqDetailed(
-    days,
-    format(resultDate, "EEEE, MMMM d, yyyy"),
-    weeksFromToday.toFixed(2),
-  );
+  const educationalBase = is120DayPage ? getDays120EducationalBase() : getDaysFromTodayEducationalBase(days);
+  const extraSections = is120DayPage ? getDays120ExtraSections() : undefined;
+  const faqItems = is120DayPage
+    ? buildDays120Faq(formattedLongDate, weeksDecimal)
+    : buildDaysFromTodayFaqDetailed(days, formattedLongDate, weeksDecimal);
 
   return (
     <CalculatorLayout>
-      <FaqJsonLd items={[...faqDetailed]} />
+      <FaqJsonLd items={[...faqItems]} />
       <Breadcrumbs items={[{ label: `${days} Days From Today`, href: `/${days}-days-from-today` }]} />
 
       <h1 className="mb-4 text-3xl font-bold text-teal-700">{days} Days From Today</h1>
@@ -80,27 +87,49 @@ export default function DaysFromTodayCalculator({ days }: DaysFromTodayCalculato
         howToIntro={educationalBase.howToIntro}
         steps={educationalBase.steps}
         aboutParagraphs={educationalBase.aboutParagraphs}
-        faqItems={faqDetailed as [FaqItem, FaqItem, FaqItem]}
+        extraSections={extraSections}
+        faqItems={faqItems}
       >
-        <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-teal-700">What date is {days} days from today?</h3>
-          <p className="mt-3 text-sm leading-relaxed text-gray-700">
-            Moving forward <strong>{days}</strong> consecutive calendar days from today—using your browser&apos;s local date—lands on{" "}
-            <strong>{format(resultDate, "EEEE, MMMM d, yyyy")}</strong>. That endpoint is what shipping carriers, court clerks, or HR teams
-            mean when they cite a flat day count rather than “about a month.” Bookmark the page if you need to recompute tomorrow after
-            midnight rolls your baseline forward.
-          </p>
-        </section>
+        {!is120DayPage ? (
+          <>
+            <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h2 className="text-lg font-semibold text-teal-700">What date is {days} days from today?</h2>
+              <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                Moving forward <strong>{days}</strong> consecutive calendar days from today—using your browser&apos;s local date—lands on{" "}
+                <strong>{formattedLongDate}</strong>. That endpoint is what shipping carriers, court clerks, or HR teams mean when they cite a
+                flat day count rather than “about a month.” Bookmark the page if you need to recompute tomorrow after midnight rolls your
+                baseline forward.
+              </p>
+            </section>
 
-        <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-teal-700">Common reasons people calculate {days} days ahead</h3>
-          <p className="mt-3 text-sm leading-relaxed text-gray-700">{extraCopy.commonReasons}</p>
-        </section>
+            <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h2 className="text-lg font-semibold text-teal-700">Common reasons people calculate {days} days ahead</h2>
+              <p className="mt-3 text-sm leading-relaxed text-gray-700">{extraCopy.commonReasons}</p>
+            </section>
 
-        <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-teal-700">Why the {days}-day window matters</h3>
-          <p className="mt-3 text-sm leading-relaxed text-gray-700">{extraCopy.timeframeParagraph}</p>
-        </section>
+            <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h2 className="text-lg font-semibold text-teal-700">Why the {days}-day window matters</h2>
+              <p className="mt-3 text-sm leading-relaxed text-gray-700">{extraCopy.timeframeParagraph}</p>
+            </section>
+          </>
+        ) : (
+          <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h2 className="text-lg font-semibold text-teal-700">Your 120-day landing date</h2>
+            <p className="mt-3 text-sm leading-relaxed text-gray-700">
+              From today, <strong>120 calendar days</strong> forward is <strong>{formattedLongDate}</strong> ({format(resultDate, "EEEE")}).
+              That is roughly <strong>{weeksDecimal} weeks</strong> on the calendar. For visa notices, mortgage timelines, or project gates,
+              paste this date into your tracker—then verify whether your document meant calendar or business days using the{" "}
+              <Link href="/date-difference-calculator" className="text-teal-700 underline underline-offset-2 hover:text-teal-900">
+                Date Difference Calculator
+              </Link>{" "}
+              and{" "}
+              <Link href="/business-days-calculator" className="text-teal-700 underline underline-offset-2 hover:text-teal-900">
+                Business Days Calculator
+              </Link>
+              .
+            </p>
+          </section>
+        )}
       </CalculatorEducationalContent>
 
       <section className="mt-8 rounded-xl border border-gray-200 p-4">

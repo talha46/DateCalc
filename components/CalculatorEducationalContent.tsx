@@ -11,7 +11,7 @@ export type CalculatorEducationalContentProps = {
   aboutParagraphs: readonly string[];
   /** Optional H2 blocks between About and FAQ (use cases, examples, domain notes) */
   extraSections?: readonly EducationalSection[];
-  faqItems: readonly [FaqItem, FaqItem, FaqItem];
+  faqItems: readonly FaqItem[];
   /** Inserted after extra sections and before FAQ — e.g. days-from-today or holiday-only blocks */
   children?: React.ReactNode;
 };
