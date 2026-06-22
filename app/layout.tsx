@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Mulish } from "next/font/google";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import "./globals.css";
@@ -73,6 +74,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        <GoogleAnalytics gaId="G-HHSZXCNEEM" />
       </body>
     </html>
   );
