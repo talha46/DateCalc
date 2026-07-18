@@ -4,6 +4,13 @@ export default function WhatIsALeapYearArticle() {
   return (
     <>
       <p>
+        A <strong>leap year</strong> is a calendar year with 366 days instead
+        of the usual 365, achieved by adding February 29 as an extra day.
+        Leap years occur every four years — with specific exceptions — to keep
+        the civil calendar aligned with Earth&apos;s orbit around the Sun.
+      </p>
+
+      <p>
         Every four years, February gains a twenty-ninth day and calendars worldwide absorb an extra day most people barely
         notice—until a birthday, a payroll cutoff, or a contract anniversary lands on February 28 in a non-leap year and
         someone argues the wrong day counts. Leap years exist because Earth does not cooperate with round numbers. The

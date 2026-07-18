@@ -18,7 +18,7 @@ export default function DateInput({ id, label, value, onChange, required }: Date
         value={value}
         required={required}
         onChange={(event) => onChange(event.target.value)}
-        className="rounded-lg border border-gray-300 bg-white px-3 py-2 outline-none ring-teal-200 transition focus:ring-2"
+        className="rounded-lg border border-gray-300 bg-white px-3 py-2 min-h-[48px] outline-none ring-teal-200 transition focus:ring-2"
       />
     </label>
   );
