@@ -55,6 +55,15 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "A quick 2026 holiday calendar with exact dates and how many days remain from June 4, 2026—plus links to live countdown tools.",
   },
+  {
+    slug: "how-to-calculate-notice-period",
+    title: "How to Calculate a Notice Period End Date",
+    description:
+      "Notice periods explained: calendar days vs business days, whether the notice day counts, month-length differences, and how to find the exact end date.",
+    publishedAt: "2026-07-22",
+    excerpt:
+      "Contract says 30 days' notice — what is your last day? A step-by-step guide covering counting conventions, month-length traps, and which DateCalc tool to use.",
+  },
 ];
 
 export const blogPostBySlug = Object.fromEntries(blogPosts.map((post) => [post.slug, post])) as Record<
