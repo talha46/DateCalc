@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import BlogReadingLinks from "@/components/BlogReadingLinks";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorEducationalContent from "@/components/CalculatorEducationalContent";
 import CalculatorLayout from "@/components/CalculatorLayout";
@@ -101,6 +102,18 @@ export default function AddDaysToDateClient() {
       <CalculatorEducationalContent {...addDaysToDateEducational} />
 
       <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
+      <BlogReadingLinks
+        links={[
+          {
+            href: "/blog/how-to-calculate-notice-period",
+            label: "How to Calculate a Notice Period End Date",
+          },
+          {
+            href: "/blog/how-many-days-between-dates",
+            label: "How to Calculate Days Between Two Dates",
+          },
+        ]}
+      />
     </CalculatorLayout>
   );
 }

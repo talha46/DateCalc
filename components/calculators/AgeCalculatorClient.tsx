@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import BlogReadingLinks from "@/components/BlogReadingLinks";
 import CalculatorEducationalContent from "@/components/CalculatorEducationalContent";
 import CalculatorLayout from "@/components/CalculatorLayout";
 import DateInput from "@/components/DateInput";
@@ -96,6 +97,14 @@ export default function AgeCalculatorClient() {
       <CalculatorEducationalContent {...ageCalculatorEducational} />
 
       <InternalToolsSection title="More Free Date Tools" tools={moreTools} />
+      <BlogReadingLinks
+        links={[
+          {
+            href: "/blog/how-to-calculate-age-manually",
+            label: "How to Calculate Your Exact Age Manually",
+          },
+        ]}
+      />
     </CalculatorLayout>
   );
 }

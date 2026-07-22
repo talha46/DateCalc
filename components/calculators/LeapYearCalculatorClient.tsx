@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import BlogReadingLinks from "@/components/BlogReadingLinks";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CalculatorEducationalContent from "@/components/CalculatorEducationalContent";
 import CalculatorLayout from "@/components/CalculatorLayout";
@@ -91,6 +92,14 @@ export default function LeapYearCalculatorClient() {
       <CalculatorEducationalContent {...leapYearEducational} />
 
       <InternalToolsSection title="Related Tools" tools={relatedTools} compact />
+      <BlogReadingLinks
+        links={[
+          {
+            href: "/blog/what-is-a-leap-year",
+            label: "What Is a Leap Year and Why Do We Have Them?",
+          },
+        ]}
+      />
     </CalculatorLayout>
   );
 }
