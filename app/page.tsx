@@ -7,8 +7,8 @@ import { ageCalculatorEducational } from "@/lib/educationalCopy/coreCalculators"
 export const metadata: Metadata = {
   title: "Age Calculator",
   description:
-    "Calculate your exact age in years, months, days, hours, and minutes with DateCalc.tools age calculator.",
-  alternates: { canonical: "https://datecalc.xyz/" },
+    "Free age calculator. Find your exact age in years, months, days, and hours. No signup required.",
+  alternates: { canonical: "https://datecalc.xyz" },
 };
 
 export default function HomePage() {

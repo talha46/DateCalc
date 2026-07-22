@@ -6,7 +6,7 @@ import { leapYearEducational } from "@/lib/educationalCopy/coreCalculators";
 
 export const metadata: Metadata = {
   title: "Leap Year Calculator",
-  description: "Check if a year is leap year and find previous/next leap years.",
+    description: "Free leap year calculator. Enter any year to instantly check if it is a leap year, see which rule applies, and find the previous and next leap years.",
   alternates: { canonical: "https://datecalc.xyz/leap-year-calculator" },
 };
 
