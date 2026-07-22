@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Mulish } from "next/font/google";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -75,6 +76,13 @@ export default function RootLayout({
           </div>
         </footer>
         <GoogleAnalytics gaId="G-HHSZXCNEEM" />
+        <Script
+          id="google-adsense"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2122654552018310"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
