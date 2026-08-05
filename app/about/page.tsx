@@ -25,8 +25,20 @@ export default function AboutPage() {
       </p>
 
       <p className="mb-4 text-gray-700">
-        DateCalc was built and is maintained by Talha Naeem, a developer
-        based in Lahore, Pakistan.
+        DateCalc is a product of Mohid Enterprises LLC. It was built and is
+        maintained by Talha Naeem, founder of Mohid Enterprises LLC, a software
+        and technology company focused on building practical digital products
+        and solutions.
+      </p>
+      <p className="mb-4 text-gray-700">
+        <a
+          href="https://services.mohidenterprisesllc.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-teal-700 hover:underline"
+        >
+          Learn more about Mohid Enterprises LLC.
+        </a>
       </p>
 
       <h2 className="mb-3 mt-6 text-xl font-semibold text-gray-800">
