@@ -4,7 +4,7 @@ import DaysFromTodayCalculator from "@/components/DaysFromTodayCalculator";
 export function generateMetadata(): Metadata {
   return {
     title: "180 Days From Today – Date Calculator",
-    description: "See the exact date, weekday, and date breakdown for 180 days from today.",
+    description: "180 days from today — find the exact date approximately six months out. Covers half-year planning, six-month performance improvement plans, and insurance review cycles.",
     alternates: { canonical: "https://datecalc.xyz/180-days-from-today" },
   };
 }

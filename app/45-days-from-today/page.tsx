@@ -4,7 +4,7 @@ import DaysFromTodayCalculator from "@/components/DaysFromTodayCalculator";
 export function generateMetadata(): Metadata {
   return {
     title: "45 Days From Today – Date Calculator",
-    description: "See the exact date, weekday, and date breakdown for 45 days from today.",
+    description: "45 days from today — find the exact date for a mid-quarter window. Covers quarterly planning subdivisions, immigration processing estimates, and construction punch-list timelines.",
     alternates: { canonical: "https://datecalc.xyz/45-days-from-today" },
   };
 }

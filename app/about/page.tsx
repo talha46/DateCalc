@@ -24,6 +24,11 @@ export default function AboutPage() {
         a server.
       </p>
 
+      <p className="mb-4 text-gray-700">
+        DateCalc was built and is maintained by Talha Naeem, a developer
+        based in Lahore, Pakistan.
+      </p>
+
       <h2 className="mb-3 mt-6 text-xl font-semibold text-gray-800">
         What the site offers
       </h2>

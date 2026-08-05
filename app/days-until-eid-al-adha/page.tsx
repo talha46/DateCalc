@@ -7,7 +7,7 @@ const config = holidayConfigBySlug["eid-al-adha"];
 export function generateMetadata(): Metadata {
   return {
     title: "Days Until Eid al-Adha – Date Calculator",
-    description: "Live countdown and exact date for Eid al-Adha.",
+    description: "Days until Eid al-Adha — live countdown to the festival of sacrifice. Dates are approximate and may vary by a day based on the Islamic lunar calendar.",
     alternates: { canonical: "https://datecalc.xyz/days-until-eid-al-adha" },
   };
 }

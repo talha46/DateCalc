@@ -7,7 +7,7 @@ const config = holidayConfigBySlug.halloween;
 export function generateMetadata(): Metadata {
   return {
     title: "Days Until Halloween – Date Calculator",
-    description: "Live countdown and exact date for Halloween.",
+    description: "Days until Halloween — live countdown to October 31. See the exact date and weekday to help plan costumes, candy orders, and decoration timelines.",
     alternates: { canonical: "https://datecalc.xyz/days-until-halloween" },
   };
 }

@@ -7,7 +7,7 @@ const config = holidayConfigBySlug["eid-al-fitr"];
 export function generateMetadata(): Metadata {
   return {
     title: "Days Until Eid al-Fitr – Date Calculator",
-    description: "Live countdown and exact date for Eid al-Fitr.",
+    description: "Days until Eid al-Fitr — live countdown to the festival marking the end of Ramadan. Dates are approximate and may shift by a day based on moon sighting.",
     alternates: { canonical: "https://datecalc.xyz/days-until-eid-al-fitr" },
   };
 }

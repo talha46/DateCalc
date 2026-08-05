@@ -7,7 +7,7 @@ const config = holidayConfigBySlug["new-year"];
 export function generateMetadata(): Metadata {
   return {
     title: "Days Until New Year – Date Calculator",
-    description: "Live countdown and exact date for New Year.",
+    description: "Days until New Year — live countdown to January 1. See the exact date, weekday, and time remaining to help plan year-end events and midnight celebrations.",
     alternates: { canonical: "https://datecalc.xyz/days-until-new-year" },
   };
 }

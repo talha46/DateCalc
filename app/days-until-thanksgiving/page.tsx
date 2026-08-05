@@ -7,7 +7,7 @@ const config = holidayConfigBySlug.thanksgiving;
 export function generateMetadata(): Metadata {
   return {
     title: "Days Until Thanksgiving – Date Calculator",
-    description: "Live countdown and exact date for Thanksgiving.",
+    description: "Days until Thanksgiving — live countdown to the fourth Thursday of November. See the exact date to help plan travel, catering, and family gatherings.",
     alternates: { canonical: "https://datecalc.xyz/days-until-thanksgiving" },
   };
 }

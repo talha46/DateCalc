@@ -1,0 +1,41 @@
+warning: in the working copy of 'app/10-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/100-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/120-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/14-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/15-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/180-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/20-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/21-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/25-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/365-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/45-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/7-days-from-today/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/about/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/days-until-diwali/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/days-until-eid-al-adha/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/days-until-eid-al-fitr/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/days-until-halloween/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/days-until-new-year/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/days-until-thanksgiving/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/days-until-valentines-day/page.tsx', LF will be replaced by CRLF the next time Git touches it
+ app/10-days-from-today/page.tsx        | 2 [32m+[m[31m-[m
+ app/100-days-from-today/page.tsx       | 2 [32m+[m[31m-[m
+ app/120-days-from-today/page.tsx       | 2 [32m+[m[31m-[m
+ app/14-days-from-today/page.tsx        | 2 [32m+[m[31m-[m
+ app/15-days-from-today/page.tsx        | 2 [32m+[m[31m-[m
+ app/180-days-from-today/page.tsx       | 2 [32m+[m[31m-[m
+ app/20-days-from-today/page.tsx        | 2 [32m+[m[31m-[m
+ app/21-days-from-today/page.tsx        | 2 [32m+[m[31m-[m
+ app/25-days-from-today/page.tsx        | 2 [32m+[m[31m-[m
+ app/365-days-from-today/page.tsx       | 2 [32m+[m[31m-[m
+ app/45-days-from-today/page.tsx        | 2 [32m+[m[31m-[m
+ app/7-days-from-today/page.tsx         | 2 [32m+[m[31m-[m
+ app/about/page.tsx                     | 5 [32m+++++[m
+ app/days-until-diwali/page.tsx         | 2 [32m+[m[31m-[m
+ app/days-until-eid-al-adha/page.tsx    | 2 [32m+[m[31m-[m
+ app/days-until-eid-al-fitr/page.tsx    | 2 [32m+[m[31m-[m
+ app/days-until-halloween/page.tsx      | 2 [32m+[m[31m-[m
+ app/days-until-new-year/page.tsx       | 2 [32m+[m[31m-[m
+ app/days-until-thanksgiving/page.tsx   | 2 [32m+[m[31m-[m
+ app/days-until-valentines-day/page.tsx | 2 [32m+[m[31m-[m
+ 20 files changed, 24 insertions(+), 19 deletions(-)

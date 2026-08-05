@@ -7,7 +7,7 @@ const config = holidayConfigBySlug.diwali;
 export function generateMetadata(): Metadata {
   return {
     title: "Days Until Diwali – Date Calculator",
-    description: "Live countdown and exact date for Diwali.",
+    description: "Days until Diwali — live countdown to the Festival of Lights. See the exact date and days remaining to help plan decorations, gifting, and celebrations.",
     alternates: { canonical: "https://datecalc.xyz/days-until-diwali" },
   };
 }

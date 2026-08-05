@@ -4,7 +4,7 @@ import DaysFromTodayCalculator from "@/components/DaysFromTodayCalculator";
 export function generateMetadata(): Metadata {
   return {
     title: "7 Days From Today – Date Calculator",
-    description: "See the exact date, weekday, and date breakdown for 7 days from today.",
+    description: "7 days from today — see the exact date and weekday. One week forward from today, with context on trial periods, shipping guarantees, and weekly sprint checkpoints.",
     alternates: { canonical: "https://datecalc.xyz/7-days-from-today" },
   };
 }
