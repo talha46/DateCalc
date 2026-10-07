@@ -95,7 +95,7 @@ export default function DaysFromTodayCalculator({ days }: DaysFromTodayCalculato
             <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-teal-700">What date is {days} days from today?</h2>
               <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                Moving forward <strong>{days}</strong> consecutive calendar days from today—using your browser&apos;s local date—lands on{" "}
+                Moving forward <strong>{days}</strong> consecutive calendar days from today—using the current calendar date when this page is rendered—lands on{" "}
                 <strong>{formattedLongDate}</strong>. That endpoint is what shipping carriers, court clerks, or HR teams mean when they cite a
                 flat day count rather than “about a month.” Bookmark the page if you need to recompute tomorrow after midnight rolls your
                 baseline forward.

@@ -5,9 +5,9 @@ import type { DaysFromTodayEducationalBase } from "@/lib/educationalCopy/daysFro
 export function getDays120EducationalBase(): DaysFromTodayEducationalBase {
   return {
     howToIntro:
-      "One hundred twenty calendar days is a span people encounter when agencies quote processing times, insurers impose waiting periods, or project charters set phase gates roughly four months out. This page rolls forward exactly 120 midnights from today in your local timezone and prints the landing weekday, weeks equivalent, and month drift so you can paste a concrete date into email instead of saying “about four months.”",
+      "One hundred twenty calendar days is a span people encounter when agencies quote processing times, insurers impose waiting periods, or project charters set phase gates roughly four months out. This page rolls forward exactly 120 calendar days from today when the page is rendered and prints the landing weekday, weeks equivalent, and month drift so you can paste a concrete date into email instead of saying “about four months.”",
     steps: [
-      "Read the large resulting date at the top—that is the calendar day that occurs 120 full days after today on your device clock.",
+      "Read the large resulting date at the top—that is the calendar day that occurs 120 full days after today on the server clock used for this page.",
       "Check weekday and weeks tiles if you need to align with payroll cycles, sprint reviews, or travel that keys off weekends.",
       "When your anchor is not today—visa receipt date, contract signature, inspection approval—open the Add Days to Date Calculator, enter that start date, and add 120 days there.",
     ],
@@ -50,7 +50,7 @@ export function buildDays120Faq(
   return [
     {
       question: "What date is 120 days from today?",
-      answer: `One hundred twenty calendar days from today lands on ${formattedLongDate} in your local timezone. That answer updates when the calendar rolls forward—refresh tomorrow if you anchored on “today.” For a fixed filing or birth date, use the Add Days to Date Calculator instead.`,
+      answer: `One hundred twenty calendar days from today lands on ${formattedLongDate}. That answer is calculated when this page is rendered—refresh tomorrow if you anchored on “today.” For a fixed filing or birth date, use the Add Days to Date Calculator instead.`,
     },
     {
       question: "Is 120 days the same as four months?",

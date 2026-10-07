@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import DaysFromTodayCalculator from "@/components/DaysFromTodayCalculator";
 
+export const dynamic = "force-dynamic";
+
 export function generateMetadata(): Metadata {
   return {
     title: "30 Days From Today – Date Calculator",

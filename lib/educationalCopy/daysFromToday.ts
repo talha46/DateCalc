@@ -122,14 +122,14 @@ export function getDaysFromTodayExtraCopy(days: number): DaysFromTodayExtraCopy 
 export function getDaysFromTodayEducationalBase(days: number): DaysFromTodayEducationalBase {
   return {
     howToIntro:
-      `This page instantly projects ${days} calendar days forward from “today” on your device, showing the landing weekday plus helper stats like weeks and months of drift. Use it when someone cites “${days} days from now” and you want to anchor the exact calendar date without manual counting across month lengths.`,
+      `This page projects ${days} calendar days forward from today’s date when the page is rendered, showing the landing weekday plus helper stats like weeks and months of drift. Use it when someone cites “${days} days from now” and you want to anchor the exact calendar date without manual counting across month lengths.`,
     steps: [
-      `Review the highlighted resulting date—this is the calendar day that occurs ${days} full days after today’s date in your local timezone.`,
+      `Review the highlighted resulting date—this is the calendar day that occurs ${days} full days after today’s date on the server clock used for this page.`,
       `Scan companion tiles for weekday context, remaining days left in the year, approximate weeks, and whole-month deltas useful for comparisons.`,
       `If you need a different starting point than today, follow the linked Add Days to Date Calculator to choose any anchor while preserving the same duration logic.`,
     ],
     aboutParagraphs: [
-      `Forward projection matters because everyday planning—shipping slogans, cooling-off clauses, trial timers, and clinic schedules—often states durations instead of naming the final calendar day. Rolling forward ${days} successive local midnights yields an unambiguous landing date you can paste into tickets or calendar invites.`,
+      `Forward projection matters because everyday planning—shipping slogans, cooling-off clauses, trial timers, and clinic schedules—often states durations instead of naming the final calendar day. Rolling forward ${days} successive calendar days yields an unambiguous landing date you can paste into tickets or calendar invites.`,
       "Calendar-month shortcuts mislead when policies say “30 days” versus “one month,” especially crossing February. Showing both the concrete calendar answer and derived week/month approximations helps you translate legal calendar-day language into agile weekly planning without silent rounding errors.",
       `Companion metrics contextualize what ${days} days feels like in adjacent units: weeks clarify sprint cadences, month differences hint at billing cycles, and weekday names expose weekend crossings that matter when someone mistakenly counts only business days.`,
     ],
@@ -144,7 +144,7 @@ export function buildDaysFromTodayFaqDetailed(
   return [
     {
       question: `What date is ${days} days from today?`,
-      answer: `${days} days from today lands on ${formattedLongDate}. That value reflects rolling forward one calendar day at a time from today’s date in your local timezone, which matters when your deadline crosses midnight near international collaboration.`,
+      answer: `${days} days from today lands on ${formattedLongDate}. That value reflects rolling forward one calendar day at a time from today’s date when this page is rendered, so refresh tomorrow if you need the next day’s projection.`,
     },
     {
       question: `How many weeks are in ${days} days?`,
